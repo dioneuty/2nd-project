@@ -1,0 +1,597 @@
+﻿<%@page import="java.util.ArrayList"%>
+<%@page import="com.hb.user.model.HanbUserDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<% 
+	Integer check = (Integer) request.getAttribute("joinchk"); 
+%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<style>
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+
+* {
+	box-sizing: border-box;
+	font-family: 'Nanum Gothic', serif;
+}
+
+@media screen and (max-width:768px){
+	.lbg {
+		display: none;
+		overflow: hidden;
+	}
+	.containers {
+		display:none;
+	}
+}
+body .containers {
+	position: absolute;
+	margin: 140px 30%;
+	overflow: hidden;
+	z-index:15;
+	width: 720px;
+	height: 510px;
+	border-radius: 10px;
+	background-color:#EBF7FF;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 10px 30px;
+}
+body .containers .half {
+	float: left;
+	width: 50%;
+	height: 100%;
+	padding: 58px 40px;
+}
+
+body .containers .half.bg {
+	background-image: url("<%=path%>/imgs/study.jpeg");
+	background-size: 400px;
+	background-repeat: no-repeat;
+}
+
+body .containers h1 {
+	font-size: 18px;
+	font-weight: 700;
+	margin-bottom: 23px;
+	text-align: center;
+	text-indent: 6px;
+	letter-spacing: 7px;
+	text-transform: uppercase;
+	color: #263238;
+}
+
+body .containers .tabs {
+	width: 100%;
+	margin-bottom: 29px;
+	border-bottom: 1px solid #d9d9d9;
+}
+ 
+body .containers .tabs .tab {
+	display: inline-block;
+	margin-bottom: -1px;
+	padding: 20px 15px 10px;
+	cursor: pointer;
+	letter-spacing: 0;
+	border-bottom: 1px solid #d9d9d9;
+	user-select: none;
+	background: transparent;
+	transition: all 0.1s ease-in-out;
+}
+
+body .containers .tabs .tab a {
+	font-size: 11px;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #d9d9d9;
+	transition: all 0.1s ease-in-out;
+}
+
+body .containers .tabs .tab.active a, body .containers .tabs .tab:hover a
+	{
+	color: #263238;
+}
+
+body .containers .tabs .tab.active {
+	border-bottom: 1px solid #263238;
+}
+
+body .containers .content form {
+	position: relative;
+	height: 287px;
+}
+
+/* 폼 왼쪽에서 오른쪽으로 흘러오게 하기 */
+body .containers .content label:first-of-type, body .containers .content input:first-of-type,
+	body .containers .content .more:first-of-type {
+	animation: slideIn 0.4s cubic-bezier(0.37, 0.82, 0.2, 1);
+}
+
+body .containers .content label:nth-of-type(2), body .containers .content input:nth-of-type(2),
+	body .containers .content .more:nth-of-type(2) {
+	animation: slideIn 0.5s cubic-bezier(0.37, 0.82, 0.2, 1);
+}
+
+body .containers .content label:nth-of-type(3), body .containers .content input:nth-of-type(3),
+	body .containers .content .more:nth-of-type(3) {
+	animation: slideIn 0.6s cubic-bezier(0.37, 0.82, 0.2, 1);
+}
+
+body .containers .content label:nth-of-type(4), body .containers .content input:nth-of-type(4),
+	body .containers .content .more:nth-of-type(4) {
+	animation: slideIn 0.6s cubic-bezier(0.37, 0.82, 0.2, 1);
+}
+
+body .containers .content label:nth-of-type(5), body .containers .content input:nth-of-type(5),
+	body .containers .content .more:nth-of-type(5) {
+	animation: slideIn 0.6s cubic-bezier(0.37, 0.82, 0.2, 1);
+}
+
+body .containers .content label {
+	font-size: 12px;
+	color: #263238;
+	user-select: none;
+}
+
+body .containers .content label:not ([for='remember'] ) {
+	display: none;
+}
+
+body .containers .content input.inpt {
+	font-size: 14px;
+	display: block;
+	width: 100%;
+	height: 18px;
+	margin-bottom: 12px;
+	padding: 16px 13px;
+	color: #263238; 
+	border: 1px solid #d9d9d9;
+	background: transparent;
+	border-radius: 5px;
+}
+body .containers .content #id {
+	float:left;
+	font-size: 14px;
+	display: block;
+	width: 70%;
+	height: 18px;
+	margin-bottom: 12px;
+	padding: 16px 13px;
+	color: #263238;
+	border: 1px solid #d9d9d9;
+	background: transparent;
+	border-radius: 5px;
+}
+body .containers .content #idcheck {
+	font-size: 11px;
+	float:left;
+	margin-left:10px;
+	width: 26%;
+	margin-bottom: 12px;
+	padding: 8px 13px;
+	color: #263238;
+	border: 1px solid #263238;
+	background: transparent;
+	border-radius: 5px;
+	cursor: pointer;
+}
+body .containers .content #idcheck:hover {
+	background-color: #263238;
+	color: #ffffff;
+}
+body .containers .content input.inpt2 {
+	font-size: 14px;
+	width: 100px;
+	height: 20px;
+	margin-bottom: 12px;
+	padding: 16px 13px;
+	color: #999999;
+	border: 1px solid #d9d9d9;
+	background: transparent;
+	border-radius: 5px;
+}
+
+body .containers .content input.inpt:focus {
+	border-color: #263238;
+}
+body .containers .content input.inpt2:focus {
+	border-color: #263238;
+}
+body .containers .content #id:focus{
+	border-color: #263238;
+}
+body .containers .content input.submit {
+	font-size: 12px;
+	line-height: 30px;
+	display: block;
+	width: 100%;
+	height: 30px;
+	cursor: pointer;
+	vertical-align: middle;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: #263238;
+	border: 1px solid #263238;
+	background: transparent;
+	border-radius: 2px;
+}
+
+body .containers .content input.submit:hover {
+	background-color: #263238;
+	color: #ffffff;
+	transition: all 0.2s;
+}
+
+body .containers .content input:focus {
+	outline: none;
+}
+
+body .containers .content .checkbox { 
+	border: 1px solid black;
+	margin-top: 4px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	width: 0;
+	height: 0;
+	margin: 10px -1px;
+	padding: 0;
+}
+
+body .containers .content .checkbox+label {
+	vertical-align: middle;
+	display: inline-block;
+	width: 50%;
+}
+
+body .containers .content .checkbox+label:before {
+	content: "\A";
+	color: #999999;
+	font-family: Verdana;
+	font-weight: bold;
+	font-size: 8px;
+	line-height: 10px;
+	text-align: center;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	border-radius: 2px;
+	background: transparent;
+	border: 1px solid #d9d9d9;
+	width: 11px;
+	height: 11px;
+	margin: -2px 8px 0 0;
+}
+
+body .containers .content .checkbox:checked+label:before {
+	content: "✓";
+}
+
+body .containers .content .submit-wrap {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+body .containers .content .submit-wrap a {
+	font-size: 12px;
+	display: block;
+	margin-top: 20px;
+	text-align: center;
+	text-decoration: none;
+	color: #999999;
+}
+
+body .containers .content .submit-wrap a:hover {
+	text-decoration: underline;
+}
+
+body .containers .content .signup-cont {
+	display: none;
+}
+
+@keyframes slideIn { 
+
+0% {
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+	opacity: 0;
+	margin-left: -320px;
+}
+
+100%
+	{
+	filter:progid:DXImageTransform.Microsoft.Alpha(enabled=false);  
+	opacity: 1;
+	margin-left:0px; 
+	}
+}
+.credits {
+	display: block;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	color: #999999;
+	font-size: 14px;
+	margin: 0 10px 10px 0;
+}
+
+.credits a {
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+	opacity: 0.8;
+	color: inherit;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+#logo {
+	width: 100%;
+	height: 80px;
+	background-image: url("<%=path%>/imgs/logo5.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	display: block;
+}
+
+#radio {
+	text-align: center;
+	font-size: 0.8em;
+}
+
+.signup-cont>form>select {
+	height: 20px;
+}
+
+#copyr {
+	font-size: 0.7em;
+	color: #999999;
+}
+
+#texts {
+	margin-top: 130px;
+}
+
+#rbnr {
+	text-align: right;
+	padding: 0px;
+	padding-right: 5px;
+	padding-top: 5px;
+}
+
+#rbnr>a {
+	color: white;
+	text-decoration: none;
+}
+#err{
+	color:red;
+	font-size: 0.8em;
+}
+#fid{
+	background:transparent; 
+}
+.lbg{
+	width: 112.5%;
+	height: 100%;
+	margin:0px -12.5%;
+	position:absolute;
+	z-index:5;
+	background-color: rgba(255,255,255, 0.6);
+	display: none;
+}
+</style>
+<script type="text/javascript">
+	// 회원가입 조건 스크립트
+	var result = <%= check %>;
+	$('.signup-cont>form>input').blur(function(){
+		var id = $('#id').val().trim();
+		var pw = $('#pw').val().trim();
+		var phone1 = $('#phone1').val().trim();
+		var phone2 = $('#phone2').val().trim();
+		var jointf = false;
+		
+		if(id.length()<6){
+			$('#uids').text("아이디는 6자 이상이어야 합니다.");
+			jointf = true;
+		}
+		if(pw.length()<8 || isNaN(pw) || !isNaN(pw)){
+			$('#upw').text("패스워드는 8자이상,영문/숫자 조합이어야 합니다.");
+			jointf = true;
+		}		
+		
+		if(!isNaN(phone2)){
+			$('#uphone').text("전화번호는 숫자로만 입력하셔야 합니다.");
+			jointf = true;
+		}
+		if(!isNaN(phone3)){
+			$('#uphone').text("전화번호는 숫자로만 입력하셔야 합니다.");
+			jointf = true;
+		}
+		
+		
+		$('.signup-cont .submit').click(function(){
+			if(jointf){
+				return false;
+			}else{
+				return true;
+			}
+		});
+	});
+	if(result > 0){
+		$('.tabs .tab').removeClass('active');
+		$(this).addClass('active');
+		$('.cont').hide();
+		$('.join-cont').show();
+	}
+</script>
+</head>
+<body>
+	<div class="lbg col-12 mcol-0">
+	<section class="containers">
+		<article class="half">
+			<div id="logo"></div>
+			<div class="tabs">
+				<span class="tab signin active"><a href="#signin">로그인</a></span> <span
+					class="tab signup"><a href="#signup">회원가입</a></span> <span
+					class="tab findid"><a href="#findid"> ID/PW 찾기</a></span>
+			</div>
+			<div class="content">
+				<div class="signin-cont cont">
+					<form action="<%=path %>/login.hb" method="post">
+						<input type="text" name="uids" id="uids" class="inpt"
+							required="required" placeholder="아이디를 입력해 주세요.">
+							<label for="id"></label>
+							<input type="password" name="upw"
+							id="upw" class="inpt" required="required"
+							placeholder="비밀번호를 입력해 주세요."> 
+							<label for="upw"></label>
+							<span id="err"></span><br>
+						<input type="checkbox" name="remember" id="remember" class="checkbox" checked>
+						<label for="remember">아이디 기억하기</label>
+
+						<div class="submit-wrap">
+							<input type="submit" value="로그인" class="submit"> 
+							<a href="#" class="findid" id="fid">아이디/비밀번호를 잊으셨습니까?</a>
+						</div>
+					</form>
+				</div>
+				<p></p>
+				<div class="signup-cont cont">
+					<form action="join.hb" method="post">
+						<p id="radio">
+							<input type="radio" name="utypes" value="0" checked/>수강생 
+							<input type="radio" name="utypes" value="2" />직원
+						</p>
+						<input type="text" name="id" id="id" class="inpt"
+							required="required" placeholder="아이디를 입력해 주세요.">
+							<label id="uids"></label>
+							<button id="idcheck" type="button">중복확인</button>
+							 <input type="password" name="password"
+							id="password" class="inpt" required="required"
+							placeholder="비밀번호를 입력해 주세요.">
+							<label id="upw"></label>
+						<input type="text" name="name" id="name" class="inpt"
+							required="required" placeholder="이름을 입력해 주세요.">
+							<label id="uname"></label>
+							<input type="email" name="email" id="email"
+							class="inpt" required="required" placeholder="이메일을 입력해 주세요">
+							<label id="uemail"></label>
+						 <select name="phone1" id="phone1"
+							class="inpt2">
+							<option value="010">010</option>
+							<option value="011">011</option>
+							<option value="017">017</option>
+							<option value="018">018</option>
+						</select>- <input type="number" id="phone2" name="phone2" class="inpt2" maxlength='4' />- <input
+							type="number" id="phone3" name="phone3" class="inpt2"  maxlength='4'/>
+							<label id="uphone"></label>
+						<div class="submit-wrap">
+							<input type="submit" value="가입하기" class="submit">
+						</div>
+					</form>
+				</div>
+				<p></p>
+				<div class="findid-cont cont">
+					<form action="zxy/user/fine_idpw.hb" method="get">
+						<input type="button" value="아이디 찾기" class="submit" id="finded">
+						<p></p>
+						<input type="button" value="비밀번호 찾기" class="submit" id="finded">
+						<div id="texts">
+							<p id="copyr">TEL) 02 ㆍ 707 ㆍ 1480</p>
+							<p id="copyr">Copyright (c) 2017 한빛교육센터 All rights reserved.</p>
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+		</article>
+		<div class="half bg" id="rbnr">
+			<a href="#" id="close">X</a>
+		</div>
+	</section>
+	</div>
+	<%
+		HanbUserDao udao = new HanbUserDao();
+	%>
+	<script type="text/javascript">
+		$('#close').click(function(e) {
+			e.preventDefault();
+			$('.lbg').css("display", "none");
+			$('.containers').css("display", "none");
+			$('body').css("overflow-y","auto");
+			$('#err').text(" ");
+		});
+		
+		$('#finded').click(function(e) {
+			e.preventDefault();
+			location.href="<%=path%>/user/find_idpw.hb";
+		});
+		
+		$('#idcheck').click(function(){
+			
+			var chkids = $('#id').val();
+			$.ajax({
+		        // type을 설정합니다.
+		        type : 'post',
+		        url : "Joinidcheck.hb",
+		        // 사용자가 입력하여 id로 넘어온 값을 서버로 보냅니다.
+		        data : {"chkid" : chkids},
+		        // 성공적으로 값을 서버로 보냈을 경우 처리하는 코드입니다.
+		        success : function (data) {
+		            // 서버에서 Return된 값으로 중복 여부를 사용자에게 알려줍니다.
+		            console.log(data);
+		            if (data == 0) {
+		                alert("사용하실 수 있는 아이디 입니다.");               
+		            } else {
+		                alert("이미 존재하는 아이디 입니다.");
+		            }             
+		        }
+			});
+		});
+		// 해당하는 탭을 클릭했을때 하위폼을 변환시켜주는 스크립트
+		$('.tabs .tab').click(function() {
+
+			/*선택한 탭이 signin이면 active 클래스를 지우고 signin-cont 클래스를 보여줌.*/
+			if ($(this).hasClass('signin')) {
+				$('.tabs .tab').removeClass('active');
+				$(this).addClass('active');
+				$('.cont').hide();
+				$('.signin-cont').show();
+			}
+
+			/*선택한 탭이 signin이면 active 클래스를 지우고 signup-cont 클래스를 보여줌.*/
+			if ($(this).hasClass('signup')) {
+				$('.tabs .tab').removeClass('active');
+				$(this).addClass('active');
+				$('.cont').hide();
+				$('.signup-cont').show();
+			}
+
+			/*선택한 탭이 signin이면 active 클래스를 지우고 findid-cont 클래스를 보여줌.*/
+			if ($(this).hasClass('findid')) {
+				$('.tabs .tab').removeClass('active');
+				$(this).addClass('active');
+				$('.cont').hide();
+				$('.findid-cont').show();
+			}
+		});
+		$('.submit-wrap>*').click(function() {
+			if ($(this).hasClass('findid')) {
+				$('.tabs .tab').removeClass('active');
+				$('.findid').addClass('active');
+				$('.cont').hide();
+				$('.findid-cont').show();
+			}
+		});
+
+		// 우측 이미지 이동 스크립트 
+		$('.containers .bg').mousemove(
+				function(e) {
+					var amountMovedX = (e.pageX * -1 / 30);
+					var amountMovedY = (e.pageY * -1 / 9);
+					$(this).css('background-position',
+							amountMovedX + 'px ' + amountMovedY + 'px');
+				});
+	</script>
+</body>

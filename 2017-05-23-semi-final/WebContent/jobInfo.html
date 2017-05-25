@@ -1,0 +1,93 @@
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/mygrid.css" />
+    <link rel="stylesheet" href="css/contentsTitle.css" type="text/css">
+    <link rel="stylesheet" href="css/board.css" type="text/css">
+    <style>
+
+       
+    </style>
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var seenum = 4;
+            $("#tables>tbody>tr").each(function(idx) {
+                if (idx > seenum) {
+                    $(this).css("display", "none");
+                }
+            })
+            var pagecnt = 0;
+            if ((($("#tables>tbody>tr").length - 1) / 4) > 0) {
+                if (($("#tables>tbody>tr").length - 1) % 4 == 0) {
+                    pagecnt = ($("#tables>tbody>tr").length - 1) / 4;
+                } else {
+                    pagecnt = ($("#tables>tbody>tr").length - 1) / 4;
+                    pagecnt = pagecnt + 1;
+                }
+            }
+            var pagenums = "";
+            for (var i = 1; i <= pagecnt; i++) {
+                pagenums += "<a href='#' onclick='movepage(" + i + ")'>" + i + "</a> &nbsp;";
+                $("#pageindex").html(pagenums);
+            }
+
+
+        })
+
+        function movepage(a) {
+            $("#tables>tbody>tr").each(function(idx) {
+                var last = a * 4;
+                var first = last - 3;
+                if (idx > 0 && first <= idx && last >= idx) {
+                    $(this).css("display", "table-row");
+                } else if (idx == 0) {
+
+                } else {
+                    $(this).css("display", "none");
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-9">
+                <div id="title-left">
+                    	채용정보
+                </div>
+                <div id="title-right"></div>
+                
+                <table cellspacing="0" id="tables" class="board">
+                    <tr>
+                        <th style="width:50px;">번호</th>
+                        <th style="width:100px;">업체명</th>
+                        <th style="width:50px;">인원</th>
+                        <th style="width:50px;">급여</th>
+                        <th style="width:100px;">마감날짜</th>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>좋은 곳 </td>
+                        <td>18</td>
+                        <td>2900</td>
+                        <td>2017-09-08</td>
+                    </tr> 
+                </table>
+                <center>
+                    <div id="pageindex"> </div>
+                </center>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

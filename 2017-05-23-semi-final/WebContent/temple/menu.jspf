@@ -1,0 +1,383 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String uids = (String) session.getAttribute("uids");
+	Boolean result = (Boolean) session.getAttribute("result");
+	Integer utypes = (Integer) session.getAttribute("utype");
+	if(utypes == null){
+		utypes = 0;
+	}
+	String path = request.getContextPath();
+
+	System.out.println("userid :" + uids + "/ login result : " + result+ "/ utype : " + utypes);
+%>
+    <link href="../css/mygrid.css" rel="stylesheet" type="text/css" />
+    <style>
+        /* 메뉴 */
+        
+        @media screen and (max-width:768px){
+		.lbg {
+			display: none;
+			overflow: hidden;
+		}
+		.containers {
+			display:none;
+		}
+		}
+        
+        #mlogo {
+            background-image: url(../imgs/logo5.png);
+            min-height: 78px;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height: 100px;
+        }
+        #mlogo>a{
+        	width: 100%;
+        	height: 100%;
+        	display:inline-block;
+        	text-decoration: none;
+        }
+        #login>a {
+            text-decoration: none;
+            color: black;
+        }
+         #logout>a{
+        	text-decoration: none;
+            color: black;
+        }
+        #menu1 {
+            border: solid 1px rgb(234, 234, 234);
+        }
+        #menu1>table,
+        #menu2>table {
+            margin: 4px auto;
+            width: 95%;
+        }
+        
+        #menu1>table>tbody>tr>td,
+        #menu2>table>tbody>tr>td {
+            border-right: 1px rgb(234, 234, 234) solid;
+            width: 13%;
+            text-align: center;
+        }
+        
+        #menu2>table>tbody>tr>td {
+            padding-top: 10px;
+        }
+        
+        #menu1>table>tbody>tr>td>a,
+        #menu2>table>tbody>tr>td>a {
+            text-decoration: none;
+            color: black;
+        }
+        
+        #menu1>table>tbody>tr>td:last-child,
+        #menu2>table>tbody>tr>td:last-child {
+            border-right: none;
+        }
+        
+        #menu1>table>tbody>tr>td:hover {
+            background-color: rgb(234, 234, 234);
+        }
+        
+        #menu2 {
+            background-color: white;
+            height: 250px;
+            position: absolute;
+            width: 80%;
+            display: none;
+            z-index: 5;
+        }
+        /*메뉴 끝*/
+        
+        
+        
+        
+        /*슬라이더*/
+        
+        #slider {
+            background-color: dimgray;
+            margin:auto -12.5%;
+            width: 125%;
+            height: 250px;
+        }
+        
+        /*모바일 폼 */
+        
+        #m_list {
+            height: 100px;
+        }
+        
+        #m_list_item {
+            position: absolute;
+            top: 100px;
+            z-index: 30;
+            width: 100%;
+            left: 0%;
+        }
+        
+        #m_list>img {
+            padding-top: 20px;
+            width: 100%;
+        }
+        
+        #m_list_item>ul {
+            background-color: rgb(21, 70, 105);
+            width: 100%;
+            margin: 0px auto;
+            padding: 0px;
+            text-align: left;
+        }
+        
+        #m_list_item>ul>ul {
+            margin: 0px auto;
+            width: 60%;
+            padding: 0px;
+        }
+        
+        #m_list_item>ul>ul>li>a,
+        #m_list_item>ul>ul>a {
+            text-decoration: none;
+            color: rgb(233, 233, 233);
+        }
+        
+        #m_list_item>ul>ul>li>a:hover,
+        #m_list_item>ul>ul>a:hover {
+            -webkit-animation: mymove 1s;
+        }
+        
+        @-webkit-keyframes mymove {
+            from {
+                color: rgb(153, 205, 241);
+            }
+            to {
+                color: white;
+            }
+        }
+        
+        #m_list_item>ul>ul>li {
+            display: none;
+            list-style: none;
+            padding-top: 10px;
+            margin-left: 30px;
+            border-bottom: 1px solid rgb(233, 233, 233);
+            height: 30px;
+        }
+        
+        #m_list_item>ul>ul {
+            padding-top: 10px;
+            padding-bottom: 3px
+        }
+        
+        #m_list_item>ul>ul:last-child {
+            padding-bottom: 20px
+        }
+        /*모바일 폼 끝*/
+        
+        @media screen and (max-width:768px) {
+            #menu2 {
+                z-index: -10;
+                /*모바일에서 자꾸 가려져서 뒤로 보냄*/
+                display: none;
+            }
+            #menu2>table {
+                display: none;
+            }
+        }
+        /*모바일 폼 끝*/
+        
+        @media screen and (max-width:768px) {
+        	#slider{
+        		background-color:white;
+        		margin-bottom: 100px;
+        	}
+            #menu2 {
+                z-index: -10;/*모바일에서 자꾸 가려져서 뒤로 보냄*/
+                display: none;
+               
+            }
+            #menu2>table {
+                display: none;
+            }
+            
+        }
+    </style>
+    <script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
+    <script type="text/javascript">
+    
+    	var res = <%= result %>;
+        $(document).ready(function() {
+        	
+        	
+        	$('#login>a').click(function(e) {
+    			e.preventDefault();
+    			$('#menu2').hide();
+    			$('.lbg').css("display", "block");
+    			$('.containers').css("display", "block");
+    			$('body').css("overflow-y","hidden");
+    			$('body').css("overflow-x","hidden");
+    		});
+    		
+    		$('#logout>a').click(function() {
+    			alert("로그아웃 되었습니다.");
+    			$('.lbg').css("display", "none");
+    			$('.containers').css("display", "none");
+    			$('body').css("overflow-y","auto");
+    			$('#err').text(" ");
+    		});
+    		
+    		if(res == null || res == true){
+    			$('.lbg').css("display", "none");
+    			$('.containers').css("display", "none");
+    			$('body').css("overflow-y","auto");
+    			$('#err').text(" ");
+    		}else {
+    			$('.lbg').css("display", "block");
+    			$('.containers').css("display", "block");
+    			$('body').css("overflow-y","hidden");
+    			$('#err').text("ID/비밀번호를 확인해 주세요.");
+    		}
+       
+        	
+            $("#menu1>table>tbody>tr>td").click(function() {
+                $("#menu2").slideToggle();
+            })
+
+
+            var toggled = true;
+            $("#m_list>img").click(function() {
+                $("#m_list_item").slideToggle();
+                if (!toggled) {
+                    $(this).attr("src", "../imgs/list.png");
+                    toggled = true;
+                } else {
+                    $(this).attr("src", "../imgs/next.png");
+                    toggled = false;
+                }
+            }); //오른쪽위 바뀌는거
+
+
+            //하위메뉴 술라이드
+            $("#m_list_item>ul>ul:nth-child(1)>a").click(function() {
+                $("#m_list_item>ul>ul:nth-child(2)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(3)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(4)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(5)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(6)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(1)>li").slideToggle();
+            })
+            $("#m_list_item>ul>ul:nth-child(2)>a").click(function() {
+                $("#m_list_item>ul>ul:nth-child(1)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(3)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(4)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(5)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(6)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(2)>li").slideToggle();
+            })
+            $("#m_list_item>ul>ul:nth-child(3)>a").click(function() {
+                $("#m_list_item>ul>ul:nth-child(1)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(2)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(4)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(5)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(6)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(3)>li").slideToggle();
+            })
+            $("#m_list_item>ul>ul:nth-child(4)>a").click(function() {
+                $("#m_list_item>ul>ul:nth-child(1)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(2)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(3)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(5)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(6)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(4)>li").slideToggle();
+            })
+            $("#m_list_item>ul>ul:nth-child(5)>a").click(function() {
+                $("#m_list_item>ul>ul:nth-child(1)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(2)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(3)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(4)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(6)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(5)>li").slideToggle();
+            })
+            $("#m_list_item>ul>ul:nth-child(6)>a").click(function() {
+                $("#m_list_item>ul>ul:nth-child(1)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(2)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(3)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(4)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(5)>li").slideUp();
+                $("#m_list_item>ul>ul:nth-child(6)>li").slideToggle();
+            })
+            //하위메뉴 슬라이드끝
+
+
+        })
+    </script>
+    <div class="container">
+        <!-- 헤더 -->
+        <div class="row">
+        	<%@include file="../temple/login_pc.jspf"%>
+            <div class="col-3 mcol-0" id="mlogo"><a href="<%=path %>/index.hb">&nbsp;</a></div>
+            <div class="col-8 mcol-0">&nbsp;</div>
+            <%if(result == null || !result){ %>
+            <div class="col-1 mcol-0" id="login">
+                <a href="#">로그인</a>
+            </div>
+            <% }else{%>
+            <div class="col-1 mcol-0" id="logout">
+                <a href="<%=path %>/logout.hb">로그아웃</a>
+            </div>
+            <%}%>
+        </div>
+        <div class="row">
+            <!--            상위메뉴-->
+            <div class="col-12 mcol-0" id="menu1">
+                <table>
+                    <tr>
+                        <td><a href="#">한빛소개</a></td>
+                        <td><a href="#">교육과정</a></td>
+                        <td><a href="#">취업지원</a></td>
+                        <td><a href="#">수강생</a></td>
+                        <td><a href="#">직원</a></td>
+                        <td><a href="#">고객센터</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" id="menu2">
+                <%@ include file="menulink.jspf" %>
+
+
+            </div>
+        </div>
+       
+        <!-- 모바일 메뉴 -->
+        <div class="row" id="mobile">
+            <div class="col-0 mcol-5" id="mlogo"></div>
+            <div class="col-0 mcol-6">&nbsp;</div>
+            <div class="col-0 mcol-1" id="m_list">
+                <img src="../imgs/list.png" />
+            </div>
+            <div class="col-0 mcol-5"></div>
+            <div class="col-0 mcol-7" id="m_list_item">
+                <%@ include file="mobilelink.jspf" %>
+            </div>
+            <!-- 모바일 메뉴 -->
+             <!-- 슬라이더 -->
+        <div class="row">
+            <div class="col-12 mcol-12" id="slider">
+                <img src="../imgs/menu_half_1.jpg" style="margin-left:10%;width:80%;height:250px">
+            </div>
+        </div>
+        <!-- 슬라이더 -->	
+        </div>
+        <!--       content-->
+        <div class="row mrow">
+            <div class="col-3 mcol-0"></div>
+            <div class="col-9 mcol-0">
+
+            </div>
+
+        </div>
+    </div>
+

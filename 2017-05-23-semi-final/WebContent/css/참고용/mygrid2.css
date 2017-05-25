@@ -1,0 +1,297 @@
+@CHARSET "utf-8";
+ body, body>*{
+                margin: 0px;
+                padding: 0px;
+            }
+            .container{
+                width: 80%;
+                margin: 0px auto;
+            }
+            .container>.row{
+                clear: both;
+            }
+            .menu>div:nth-child(1) {
+                background-color: rgb(136, 30, 30);
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+                height: 40px;
+            }
+            .menu>div:nth-child(3) {
+                background-color: rgb(136, 30, 30);
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+                height: 40px;
+            }
+            #menus {
+                list-style: none;
+                padding: 0px;
+                margin: 0px;
+                color:aliceblue;
+                border-radius: 10px;	
+            }
+	   	
+            @media screen and (max-width:768px){
+                .container>.row>.mcol-1
+                ,.container>.row>.mcol-2
+                ,.container>.row>.mcol-3
+                ,.container>.row>.mcol-4
+                ,.container>.row>.mcol-5
+                ,.container>.row>.mcol-6
+                ,.container>.row>.mcol-7
+                ,.container>.row>.mcol-8
+                ,.container>.row>.mcol-9
+                ,.container>.row>.mcol-10
+                ,.container>.row>.mcol-11
+                ,.container>.row>.mcol-12{
+                    border-style: dotted;
+                    border-color: red;
+                    border-width: 1px;
+                    box-sizing: border-box;
+                    float: left;
+
+                }
+                .mcol-0{
+                display: none;
+                }
+                .mcol-1{
+                width: 8.33%;
+                }
+                .mcol-2{
+                    width: 16.66%;
+                }
+                .mcol-3{
+                    width: 25%;
+                }
+                .mcol-4{
+                    width: 33.33%;
+                }
+                .mcol-5{
+                    width: 41.66%;
+                }
+                .mcol-6{
+                    width: 50%;
+                }
+                .mcol-7{
+                    width: 58.33%;
+                }
+                .mcol-8{
+                    width: 66.66%;
+                }
+                .mcol-9{
+                    width: 75%;
+                }
+                .mcol-10{
+                    width: 83.33%;
+                }
+                .mcol-11{
+                    width: 91.66%;
+                }
+                .mcol-12{
+                    width: 100%;
+                }
+
+				.menu>div:nth-child(2) {
+					border-radius: 10px;
+				}
+				#menus>li{
+                    background-color: rgb(136, 30, 30);
+                    float:left;
+                    text-align: center;
+                    line-height: 40px;
+                    vertical-align: middle;
+                }
+				#menus>li:hover{
+					float:left;
+					text-align: center;
+					background-color: white;
+					color: rgb(136, 30, 30);
+                }
+                
+				#menus>li:hover >ul{
+                    list-style: none;
+                    float: left;
+                    padding: 0px;
+                    width: 80%;
+                    position: absolute;
+                    top: 122px;
+                    background-color: white;
+                    display: block;
+                }
+            }
+            
+            @media screen and (min-width:769px) and (max-width:1199px){
+                /*pc*/
+                
+            .container>.row>.col-1
+            ,.container>.row>.col-2
+            ,.container>.row>.col-3
+            ,.container>.row>.col-4
+            ,.container>.row>.col-5
+            ,.container>.row>.col-6
+            ,.container>.row>.col-7
+            ,.container>.row>.col-8
+            ,.container>.row>.col-9
+            ,.container>.row>.col-10
+            ,.container>.row>.col-11
+            ,.container>.row>.col-12{
+                border-style: dashed;
+                border-color: red;
+                border-width: 1px;
+                box-sizing: border-box;
+                float: left;
+
+            }
+            	.col-0{
+                    display:none;
+                }
+                .col-1{
+                    width: 8.33%;
+                }
+                .col-2{
+                    width: 16.66%;
+                }
+                .col-3{
+                    width: 25%;
+                }
+                .col-4{
+                    width: 33.33%;
+                }
+                .col-5{
+                    width: 41.66%;
+                }
+                .col-6{
+                    width: 50%;
+                }
+                .col-7{
+                    width: 58.33%;
+                }
+                .col-8{
+                    width: 66.66%;
+                }
+                .col-9{
+                    width: 75%;
+                }
+                .col-10{
+                    width: 83.33%;
+                }
+                .col-11{
+                    width: 91.66%;
+                }
+                .col-12{
+                    width: 100%;
+                }
+				
+				#menus>li{
+                    background-color: rgb(136, 30, 30);
+                    float:left;
+                    text-align: center;
+                    line-height: 40px;
+                    vertical-align: middle;
+                }
+				#menus>li:hover{
+					float:left;
+					text-align: center;
+					background-color: white;
+					color: rgb(136, 30, 30);
+                }
+                
+				#menus>li:hover >ul{
+                    list-style: none;
+                    float: left;
+                    padding: 0px;
+                    width: 11%;
+                    position: absolute;
+                    top: 122px;
+                    background-color: white;
+                    display: block;
+                }
+                
+            }
+			
+			
+            @media screen and (min-width:1200px){
+                /*uhd 해상도*/
+                
+             .container>.row>.col-1
+            ,.container>.row>.col-2
+            ,.container>.row>.col-3
+            ,.container>.row>.col-4
+            ,.container>.row>.col-5
+            ,.container>.row>.col-6
+            ,.container>.row>.col-7
+            ,.container>.row>.col-8
+            ,.container>.row>.col-9
+            ,.container>.row>.col-10
+            ,.container>.row>.col-11
+            ,.container>.row>.col-12 {
+                border-style: dashed;
+                border-color: green;
+                border-width: 1px;
+                box-sizing: border-box;
+                float: left;
+
+            }
+                .col-0{
+                    display:none;
+                }
+                .col-1{
+                    width: 8.33%;
+                }
+                .col-2{
+                    width: 16.66%;
+                }
+                .col-3{
+                    width: 25%;
+                }
+                .col-4{
+                    width: 33.33%;
+                }
+                .col-5{
+                    width: 41.66%;
+                }
+                .col-6{
+                    width: 50%;
+                }
+                .col-7{
+                    width: 58.33%;
+                }
+                .col-8{
+                    width: 66.66%;
+                }
+                .col-9{
+                    width: 75%;
+                }
+                .col-10{
+                    width: 83.33%;
+                }
+                .col-11{
+                    width: 91.66%;
+                }
+                .col-12{
+                    width: 100%;
+                }
+				#menus>li{
+                    background-color: rgb(136, 30, 30);
+                    float:left;
+                    text-align: center;
+                    line-height: 40px;
+                    vertical-align: middle;
+                }
+				#menus>li:hover{
+					float:left;
+					text-align: center;
+					background-color: white;
+					color: rgb(136, 30, 30);
+                }
+                
+				#menus>li:hover >ul{
+                    list-style: none;
+                    float: left;
+                    padding: 0px;
+                    width: 11%;
+                    position: absolute;
+                    top: 122px;
+                    background-color: white;
+                    display: block;
+                }
+            }    

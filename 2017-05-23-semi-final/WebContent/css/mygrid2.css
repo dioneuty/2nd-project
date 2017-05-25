@@ -1,0 +1,228 @@
+@CHARSET "UTF-8";
+ body, body>*{
+                margin: 0px;
+                padding: 0px;
+            }
+            .container2{
+                width: 80%;
+                margin: 0px auto;
+            }
+            .container2>.row{
+                clear: both;
+            }
+            
+            @media screen and (max-width:768px){
+            	 .container2 hr{
+ 				height: 0px;
+ 				width: 0px;
+            }
+                .container2>.row>.mcol-1
+                ,.container2>.row>.mcol-2
+                ,.container2>.row>.mcol-3
+                ,.container2>.row>.mcol-4
+                ,.container2>.row>.mcol-5
+                ,.container2>.row>.mcol-6
+                ,.container2>.row>.mcol-7
+                ,.container2>.row>.mcol-8
+                ,.container2>.row>.mcol-9
+                ,.container2>.row>.mcol-10
+                ,.container2>.row>.mcol-11
+                ,.container2>.row>.mcol-12{
+
+					
+                    box-sizing: border-box;
+                    float: left;
+                }
+                .mcol-0{
+                display: none;
+                }
+                .mcol-1{
+                width: 8.33%;
+                }
+                .mcol-2{
+                    width: 16.66%;
+                }
+                .mcol-3{
+                    width: 25%;
+                }
+                .mcol-4{
+                    width: 33.33%;
+                }
+                .mcol-5{
+                    width: 41.66%;
+                }
+                .mcol-6{
+                    width: 50%;
+                }
+                .mcol-7{
+                    width: 58.33%;
+                }
+                .mcol-8{
+                    width: 66.66%;
+                }
+                .mcol-9{
+                    width: 75%;
+                }
+                .mcol-10{
+                    width: 83.33%;
+                }
+                .mcol-11{
+                    width: 91.66%;
+                }
+                .mcol-12{
+                    width: 100%;
+                }
+                .header{
+            text-align: center;
+            width: 100%;
+            height: 120px;
+            border: dashed 1px gray;
+            
+        }
+        
+				
+            }
+            
+            @media screen and (min-width:769px) and (max-width:1199px){
+                /*pc*/
+                
+            .container2>.row>.col-1
+            ,.container2>.row>.col-2
+            ,.container2>.row>.col-3
+            ,.container2>.row>.col-4
+            ,.container2>.row>.col-5
+            ,.container2>.row>.col-6
+            ,.container2>.row>.col-7
+            ,.container2>.row>.col-8
+            ,.container2>.row>.col-9
+            ,.container2>.row>.col-10
+            ,.container2>.row>.col-11
+            ,.container2>.row>.col-12{
+
+
+
+                box-sizing: border-box;
+                float: left;
+            }
+            	.col-0{
+                    display:none;
+                }
+                .col-1{
+                    width: 8.33%;
+                }
+                .col-2{
+                    width: 16.66%;
+                }
+                .col-3{
+                    width: 20%;
+                }
+                .col-4{
+                    width: 33.33%;
+                }
+                .col-5{
+                    width: 41.66%;
+                }
+                .col-6{
+                    width: 50%;
+                }
+                .col-7{
+                    width: 58.33%;
+                }
+                .col-8{
+                    width: 66.66%;
+                }
+                .col-9{
+                    width: 75%;
+                }
+                .col-10{
+                    width: 83.33%;
+                }
+                .col-11{
+                    width: 91.66%;
+                }
+                .col-12{
+                    width: 100%;
+                }
+				#menus>li>ul>li a{
+				padding:7% 30%;
+				}
+				.header{
+            text-align: center;
+            width: 100%;
+            height: 370px;
+            border: dashed 1px gray;
+        }
+ 
+        
+            }
+			
+			
+            @media screen and (min-width:1200px){
+                /*uhd 해상도*/
+                
+             .container2>.row>.col-1
+            ,.container2>.row>.col-2
+            ,.container2>.row>.col-3
+            ,.container2>.row>.col-4
+            ,.container2>.row>.col-5
+            ,.container2>.row>.col-6
+            ,.container2>.row>.col-7
+            ,.container2>.row>.col-8
+            ,.container2>.row>.col-9
+            ,.container2>.row>.col-10
+            ,.container2>.row>.col-11
+            ,.container2>.row>.col-12 {
+
+              
+				
+				
+                box-sizing: border-box;
+                float: left;
+            }
+                .col-0{
+                    display:none;
+                }
+                .col-1{
+                    width: 8.33%;
+                }
+                .col-2{
+                    width: 16.66%;
+                }
+                .col-3{
+                    width: 20%;
+                }
+                .col-4{
+                    width: 33.33%;
+                }
+                .col-5{
+                    width: 41.66%;
+                }
+                .col-6{
+                    width: 50%;
+                }
+                .col-7{
+                    width: 58.33%;
+                }
+                .col-8{
+                    width: 66.66%;
+                }
+                .col-9{
+                    width: 75%;
+                }
+                .col-10{
+                    width: 83.33%;
+                }
+                .col-11{
+                    width: 91.66%;
+                }
+                .col-12{
+                    width: 100%;
+                }
+                .header{
+            text-align: center;
+            width: 100%;
+            height: 370px;
+            border: dashed 1px gray;
+        }
+ 
+            }    

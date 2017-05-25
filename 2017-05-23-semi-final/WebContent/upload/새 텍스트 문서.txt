@@ -1,0 +1,20 @@
+#dbe4e6
+
+
+<div class="sta1">
+						<p>
+							수강생 이름 : <span><%=session.getAttribute("uname")%></span>
+						</p>
+						<p>
+							수강중인 과정명 : <span><%=edu.getEname()%></span>
+						</p>
+						<p>
+							수강중인 과목1 : <span><%=edu.getEsub1()%></span>
+						</p>
+						<p>
+							수강중인 과목2 : <span><%=edu.getEsub2()%></span>
+						</p>
+						<p>
+							수강중인 과목3 : <span><%=edu.getEsub3()%></span>
+						</p>
+					</div>

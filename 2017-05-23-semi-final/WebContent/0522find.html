@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <link rel="stylesheet" href="css/contentsTitle.css" type="text/css">
+    <link rel="stylesheet" href="css/mygrid.css" type="text/css">
+    <style>
+        
+        #findingbox1,
+        #findingbox2 {
+            position: absolute;
+            display: inline-block;
+            border: 1px solid rgb(234, 234, 234);
+            width: 20%;
+            min-height: 60px;
+            color: rgb(170, 170, 170);
+            text-align: center;
+            cursor: pointer;
+            font-size: 90%;
+        }
+        
+        #find_input {
+            margin-top: 15px;
+            width: 99%;
+            height: 40px;
+            display: none;
+        }
+        
+        #findid_send,
+        #findpw_send,
+        #find_send {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            display: none;
+        }
+        
+        #findingbox1 {
+            left: 25%;
+        }
+        
+        #findingbox2>div,
+        #findingbox1>div {
+            border: 1px solid rgb(234, 234, 234);
+            margin-top: 15px;
+            width: 99%;
+            height: 40px;
+            display: none;
+        }
+        
+        #close {
+            border: 1px solid rgb(234, 234, 234);
+            float: right;
+            padding: 6px;
+            padding-top: 1px;
+            display: none;
+        }
+        
+        #close2 {
+            border: 1px solid rgb(234, 234, 234);
+            float: right;
+            padding: 6px;
+            padding-top: 1px;
+            display: none;
+        }
+        
+        #findingbox2 {
+            left: 50%;
+        }
+
+    </style>
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".container").fadeIn();
+            $("#findingbox1,#findingbox2").addClass('nonspread');
+            $("#findingbox1>div,#findingbox2>div").eq(0).css("margin-top", "30px");
+
+
+
+            $("#findingbox1>#namespan").eq(0).click(function() {
+                if ($("#findingbox1").hasClass('nonspread')) {
+                    $("#findingbox2").fadeOut();
+                    $("#findingbox1").animate({
+                        width: '50%',
+                        height: '230px'
+                    })
+                    $("button[name=sending]").fadeIn();
+                    $("#close").fadeIn();
+                    $("#findingbox1>div").fadeIn();
+                    $("#findingbox1").removeClass('nonspread');
+                    $("#findingbox1").addClass('spread');
+                }
+
+            })
+            $("#close").click(function() {
+                if ($("#findingbox1").hasClass('spread')) {
+
+                    $("#findingbox1").animate({
+                        height: '60px',
+                        width: '20%'
+                    })
+                    $("button[name=sending]").hide();
+                    $("#close").css('display', 'none');
+                    $("#findingbox1>div").fadeOut();
+                    $("#findingbox2").fadeIn('slow');
+                    $("input").hide();
+                    $("#findingbox1").removeClass('spread');
+                    $("#findingbox1").addClass('nonspread');
+                }
+
+            })
+
+            $("#findingbox2>#pwspan").eq(0).click(function() {
+                if ($("#findingbox2").hasClass('nonspread')) {
+                    $("#findingbox1").fadeOut();
+                    $("#findingbox2").animate({
+                        left: '25%',
+                        height: '250px',
+                        width: '50%'
+                    })
+
+                    $("input[name=pass_Id]").prev().fadeIn();
+                    $("input[name=pass_Id]").next().fadeIn();
+                    $("#close2").fadeIn();
+                    $("#findingbox2").removeClass('nonspread');
+                    $("#findingbox2").addClass('spread');
+                }
+            })
+            $("#close2").click(function() {
+                if ($("#findingbox2").hasClass('spread')) {
+
+                    $("#findingbox2").animate({
+                        left: '50%',
+                        height: '60px',
+                        width: '20%'
+                    })
+                    $("#close2").css('display', 'none');
+                    $("#close2").nextAll().hide();
+                    $("button[name=sending]").hide();
+                    $("#findingbox1").fadeIn('slow')
+                    $("#findingbox2").removeClass('spread');
+                    $("#findingbox2").addClass('nonspread');
+                }
+            })
+
+            $("input[name=id_email],input[name=pass_Email]").prev().click(function() {
+                $(this).hide();
+                $(this).next().fadeIn();
+            })
+
+            $("input[name=id_phone],input[name=pass_Phone]").prev().click(function() {
+                $(this).hide();
+                $(this).next().fadeIn();
+            })
+
+            $("input[name=pass_Id]").prev().click(function() {
+                $(this).hide();
+                $(this).next().fadeIn();
+            })
+            $("button[name=next]").nextAll().hide();
+            $("button[name=next]").click(function() {
+                if ($(this).prev().val() == '') {
+
+                    alert("채워주세요");
+                    return false;
+                }
+                $(this).hide();
+                $(this).prev().hide();
+                $(this).prev().prev().hide();
+                $("input[name=pass_Email]").prev().fadeIn();
+                $("input[name=pass_Phone]").prev().fadeIn();
+                $("button[name=sending]").fadeIn();
+            })
+
+            $("#findid_send").click(function() {
+                if ($("input[name=id_email]").val() == '' && $("input[name=id_phone]").val() == '') {
+                    alert("핸드폰 번호나 비밀번호 둘 중에 하나는 입력하셔야 됩니다.");
+                    return false;
+                }
+            })
+            $("#findpw_send").click(function() {
+                if ($("input[name=pass_Email]").val() == '' && $("input[name=pass_Phone]").val() == '') {
+                    alert("핸드폰 번호나 비밀번호 둘 중에 하나는 입력하셔야 됩니다.");
+                    return false;
+                }
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-9" style="position:relative;">
+                <div id="title-left">Id/Password</div>
+                <div id="title-right"></div>
+                <div id="line"><img src="imgs/right.jpg" alt=""></div>
+                <form action="aa.html" id="idfind"></form>
+                <form action="#" id="passfind"></form>
+                <div id="findingbox1">
+                    <span id="namespan">ID찾기</span>
+                    <span id="close">x</span>
+
+                    <div>E-mail로 찾기</div>
+                    <input type="text" form="idfind" name="id_email" placeholder="E-mail로 찾기" id="find_input">
+
+                    <div>휴대전화번호로 찾기</div>
+                    <input type="text" form="idfind" name="id_phone" placeholder="휴대전화번호로 찾기" id="find_input">
+
+                    <button type="submit" form="idfind" name="sending" id="findid_send">찾기</button>
+
+                </div>
+                <div id="findingbox2">
+                    <span id="pwspan">비밀번호 찾기</span>
+                    <span id="close2">x</span>
+                    <div>ID를 입력</div>
+                    <input type="text" form="passfind" name="pass_Id" placeholder="Id 입력" id="find_input">
+                    <button name="next" id="find_send">ID를 입력했나요?</button>
+                    <div>E-mail로 찾기</div>
+                    <input type="text" form="passfind" name="pass_Email" placeholder="E-mail로 찾기" id="find_input">
+
+                    <div>휴대전화번호로 찾기</div>
+                    <input type="text" form="passfind" name="pass_Phone" placeholder="휴대전화번호로 찾기" id="find_input">
+
+                    <button type="submit" form="passfind" name="sending" id="findpw_send">찾기</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

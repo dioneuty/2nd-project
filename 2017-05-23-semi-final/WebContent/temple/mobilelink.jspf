@@ -1,0 +1,56 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% String momenupath=request.getContextPath(); %>    
+                <ul class=col-0>
+                    <ul><a>한빛소개</a>
+                        <li><a href="<%=momenupath %>/introduce/sogae.jsp">학원소개</a></li>
+                        <li><a href="<%=momenupath %>/introduce/sogae.jsp">입학안내</a></li>
+                        <li><a href="<%=momenupath %>/introduce/sogae.jsp">위치안내</a></li>
+                    </ul>
+                    <ul><a href="#">교육과정</a>
+                        <li><a href="<%=momenupath %>/education/process.hb">개강과정안내</a></li>
+                        <li><a href="<%=momenupath %>/education/process.hb">수강생후기</a></li>
+                        <li><a href="<%=momenupath %>/job/info.hb">포트폴리오</a></li>
+                    </ul>
+                    <ul><a href="#">취업지원</a>
+                        <li><a href="<%=momenupath %>/job/info.hb">취업현황</a></li>
+                        <li><a href="<%=momenupath %>/job/info.hb">채용정보</a></li>
+                        <li><a href="#">채용정보등록</a></li>
+                    </ul>
+                <%if(utypes == 1 || utypes == 6){ %>
+                    <ul><a href="#">수강생</a>
+                        <li><a href="<%=momenupath %>/student/std_info.hb">나의정보</a></li>   
+                        <li><a href="<%=momenupath %>/student/std_info.hb">수강/출결 관리</a></li>
+                        <li><a href="<%=momenupath %>/student/std_info.hb">취업 지원 정보</a></li>
+                        <li><a href="<%=momenupath %>/student/std_info.hb">과제/시험</a></li>
+					</ul>
+                <% }else{%>
+                    <ul><a href="#" class="notstd">수강생</a>
+                        <li><a href="<%=momenupath %>/student/std_info.hb" class="notstd">나의정보</a></li>
+                        <li><a href="<%=momenupath %>/student/std_info.hb" class="notstd">수강/출결 관리</a></li>
+                        <li><a href="<%=momenupath %>/student/std_info.hb" class="notstd">취업 지원 정보</a></li>
+                        <li><a href="<%=momenupath %>/student/std_info.hb" class="notstd">과제/시험</a></li>
+                    </ul>
+                <% }%>
+                <%if(utypes>1){ %>                  
+                    <ul><a href="#">직원</a>
+                        <li><a href="<%=momenupath %>/staff/stf_info.hb">영업팀</a></li>
+                        <li><a href="<%=momenupath %>/staff/stf_info.hb">취업 지원팀</a></li>
+                        <li><a href="<%=momenupath %>/staff/stf_info.hb">행정팀</a></li>
+                        <li><a href="<%=momenupath %>/staff/stf_info.hb">강사팀</a></li>
+					</ul>
+                <% }else{%>
+                    <ul><a href="#" class="notstf">직원</a>
+                        <li><a href="<%=momenupath %>/staff/stf_info.hb" class="notstf">영업팀</a></li>
+                        <li><a href="<%=momenupath %>/staff/stf_info.hb" class="notstf">취업 지원팀</a></li>
+                        <li><a href="<%=momenupath %>/staff/stf_info.hb" class="notstf">행정팀</a></li>
+                        <li><a href="<%=momenupath %>/staff/stf_info.hb" class="notstf">강사팀</a></li>
+                    </ul>
+                <% }%>
+                    <ul><a href="#">고객센터</a>
+                        <li><a href="<%=momenupath %>/customer/custom_info.hb">공지사항</a></li>
+                        <li><a href="<%=momenupath %>/customer/custom_info.hb">자주 묻는 질문</a></li>
+                    </ul>
+                </ul>
+
+

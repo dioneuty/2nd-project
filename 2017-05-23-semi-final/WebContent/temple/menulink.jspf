@@ -1,0 +1,81 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% String menupath=request.getContextPath(); %>    
+<table>
+                    <tr>
+                        <td><a href="<%=menupath %>/introduce/sogae.jsp">학원소개</a></td>
+                        <td><a href="<%=menupath %>/education/process.hb">개강과정안내</a></td>
+                        <td><a href="<%=menupath %>/job/info.hb">취업현황</a></td>
+                        <%if(utypes == 1 || utypes == 6){ %>
+                        	<td><a href="<%=menupath %>/student/std_info.hb">나의정보</a></td>    
+                        <% }else{%>
+                        	<td><a href="<%=menupath %>/student/std_info.hb" class = "notstd">나의정보</a></td>
+                        <% }%>
+                        <%if(utypes>1){ %>                  
+                        	<td><a href="<%=menupath %>/staff/stf_info.hb">영업팀</a></td>
+                         <% }else{%>
+                         <td><a href="<%=menupath %>/staff/stf_info.hb" class="notstf">영업팀</a></td>
+                         <% }%>
+                        <td><a href="<%=menupath %>/customer/custom_info.hb">공지사항</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="<%=menupath %>/introduce/sogea.jsp">입학안내</a></td>
+                        <td><a href="<%=menupath %>/education/process.hb">수강생후기</a></td>
+                        <td><a href="<%=menupath %>/job/info.hb">채용정보</a></td>
+                        <%if(utypes == 1 || utypes == 6){ %>
+                        <td><a href="<%=menupath %>/student/std_info.hb">수강/출결 관리</a></td>
+                        <% }else{%>
+                        	<td><a href="<%=menupath %>/student/std_info.hb" class = "notstd">수강/출결 관리</a></td>
+                        <% }%>
+                        <%if(utypes>1){ %>                  
+                        	<td><a href="<%=menupath %>/staff/stf_info.hb">취업 지원팀</a></td>
+                         <% }else{%>
+                         <td><a href="<%=menupath %>/staff/stf_info.hb" class="notstf">취업 지원팀</a></td>
+                         <% }%>
+                        <td><a href="<%=menupath %>/customer/custom_info.hb">자주 묻는 질문</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="<%=menupath %>/introduce/sogea.jsp">위치안내</a></td>
+                        <td><a href="<%=menupath %>/job/info.hb">포트폴리오</a></td>
+                        <td>&nbsp;</td>
+                        <%if(utypes == 1 || utypes == 6){ %>
+                        <td><a href="<%=menupath %>/student/std_info.hb">취업 지원 정보</a></td>
+                        <% }else{%>
+                        	<td><a href="<%=menupath %>/student/std_info.hb" class = "notstd">취업 지원 정보</a></td>
+                        <% }%>
+                        <%if(utypes>1){ %>                  
+                        	<td><a href="<%=menupath %>/staff/stf_info.hb">행정팀</a></td>
+                         <% }else{%>
+                         <td><a href="<%=menupath %>/staff/stf_info.hb" class="notstf">행정팀</a></td>
+                         <% }%>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">&nbsp;</td>
+                        <%if(utypes == 1 || utypes == 6){ %>
+                        <td><a href="<%=menupath %>/student/std_info.hb">과제/시험</a></td>
+                        <% }else{%>
+                        	<td><a href="<%=menupath %>/student/std_info.hb" class = "notstd">과제/시험</a></td>
+                        <% }%>
+                        <%if(utypes>1){ %>                  
+                        	<td><a href="<%=menupath %>/staff/stf_info.hb">강사팀</a></td>
+                         <% }else{%>
+                         <td><a href="<%=menupath %>/staff/stf_info.hb" class="notstf">강사팀</a></td>
+                         <% }%>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+<script type="text/javascript">
+	$('.notstd').click(function (e){
+		e.preventDefault();
+		alert("해당 메뉴는 수강생만 이용할 수 있습니다.");
+	});
+	$('.notstf').click(function (e){
+		e.preventDefault();
+		alert("해당 메뉴는 직원만 이용할 수 있습니다.");
+	});
+	$('.nologin').click(function (e){
+		e.preventDefault();
+		alert("해당 메뉴는 로그인 하셔야만 이용할 수 있습니다.");
+	});
+</script>
